@@ -116,7 +116,7 @@ void* __fastcall __sub_37636F0(__int64 a1, __int64 a2, __int64 a3, __int64 a4, _
 typedef __int64(__fastcall* sub_6E150)(__int64 a1, __int64 a2, unsigned __int64* a3);
 sub_6E150 gun_XP = (sub_6E150)((uintptr_t)GetModuleHandle(L"GameAssembly.dll") + 0x6E150);
 __int64* __fastcall __sub_6E150(__int64 a1, __int64 a2, unsigned __int64* a3) {
-    gun_XP(a1, 100000, a3);
+    gun_XP(a1, 100000, a3);//to level up your gun when you kill somone
 
 
     return 0;
