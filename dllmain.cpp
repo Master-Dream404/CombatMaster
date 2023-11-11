@@ -91,11 +91,7 @@ DWORD WINAPI CHEAT(LPVOID a1)
 typedef char(__fastcall* sub_885840)(__int64 a1, int a2);
 sub_885840 __GODMODE_t = (sub_885840)((uintptr_t)GetModuleHandle(L"GameAssembly.dll") + 0x8857A0);
 char* __fastcall __GODMODE(__int64 a1, int a2) {
-
-    if (a2 < 50)
-        __GODMODE_t(a1, 100);
-    else
-        __GODMODE_t(a1, a2);
+    __GODMODE_t(a1, 100);
     return 0;
 };
 
@@ -108,6 +104,23 @@ char* __fastcall __sub_873130(__int64 a1, int a2) {
 };
 
 
+typedef __int64(__fastcall* sub_37636F0)(__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 arg0, __int64 arg8, __int64 arg10, ...);
+sub_37636F0 XP = (sub_37636F0)((uintptr_t)GetModuleHandle(L"GameAssembly.dll") + 0x37636F0);
+void* __fastcall __sub_37636F0(__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 arg0, __int64 arg8, __int64 arg10, ...) {
+    XP(a1, 1000000, a3, a4, arg0, arg8, arg10);//on kill a2 = xp for a kill i set it to 1m to get 1m xp when the game is done.
+
+    return 0;
+};
+
+
+typedef __int64(__fastcall* sub_6E150)(__int64 a1, __int64 a2, unsigned __int64* a3);
+sub_6E150 gun_XP = (sub_6E150)((uintptr_t)GetModuleHandle(L"GameAssembly.dll") + 0x6E150);
+__int64* __fastcall __sub_6E150(__int64 a1, __int64 a2, unsigned __int64* a3) {
+    gun_XP(a1, 100000, a3);
+
+
+    return 0;
+};
 
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -117,7 +130,24 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
+        //__sub_37636F0
+        DetourTransactionBegin();
+        DetourUpdateThread(GetCurrentThread());
+        DetourAttach(&(LPVOID&)gun_XP, &__sub_6E150);
+        DetourTransactionCommit();
 
+
+        DetourTransactionBegin();
+        DetourUpdateThread(GetCurrentThread());
+        DetourAttach(&(LPVOID&)XP, &__sub_37636F0);
+        DetourTransactionCommit();
+
+        DetourTransactionBegin();
+        DetourUpdateThread(GetCurrentThread());
+        DetourAttach(&(LPVOID&)__ammo_t, &__sub_873130);
+        DetourTransactionCommit();
+
+/*
         DetourTransactionBegin();
         DetourUpdateThread(GetCurrentThread());
         DetourAttach(&(LPVOID&)__ammo_t, &__sub_873130);
@@ -127,6 +157,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
         DetourUpdateThread(GetCurrentThread());
         DetourAttach(&(LPVOID&)__GODMODE_t, &__GODMODE);
         DetourTransactionCommit();
+*/
         //NOP(0x8731D0); // ammo
         //NOP(0x8730D6);
         //NOP(0x885840);// don´t work on ( online servers )
