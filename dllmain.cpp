@@ -108,7 +108,7 @@ typedef __int64(__fastcall* sub_37636F0)(__int64 a1, __int64 a2, __int64 a3, __i
 sub_37636F0 XP = (sub_37636F0)((uintptr_t)GetModuleHandle(L"GameAssembly.dll") + 0x37636F0);
 void* __fastcall __sub_37636F0(__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 arg0, __int64 arg8, __int64 arg10, ...) {
     XP(a1, 1000000, a3, a4, arg0, arg8, arg10);//on kill a2 = xp for a kill i set it to 1m to get 1m xp when the game is done.
-
+    //when you kill somone you get 1.000.000 XP aka you get level 55
     return 0;
 };
 
