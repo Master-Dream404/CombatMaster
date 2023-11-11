@@ -34,7 +34,7 @@ void Redo()//aka un nop
 
 /*
 //GameAssembly.dll+885840 - 90 godmode
-//GameAssembly.dll+8732D7 - 89 7C C2 20 - ammo ( don´t use ) -- this address is getting call for somthing else :(
+//GameAssembly.dll+8732D7 - 89 7C C2 20 - ammo ( donÂ´t use ) -- this address is getting call for somthing else :(
 //GameAssembly.dll+8730D6 - 89 7C C2 20 - nate
 //GameAssembly.dll+885840 - 42 89 7C C2 20        - mov [rdx+r8*8+20],edi - godmode
 //GameAssembly.dll+885806 - 8B 74 CA 20           - mov esi,[rdx+rcx*8+20]
@@ -49,9 +49,9 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        NOP(0x8731D0);
+        NOP(0x8731D0); // ammo
         //NOP(0x8730D6);
-        NOP(0x885840);// don´t work on ( online servers )
+        NOP(0x885840);// donÂ´t work on ( online servers )
         Sleep(1);
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
