@@ -2,8 +2,8 @@
 #include <Windows.h>
 #include <string>
 #include <vector>
-#include "detour/detours.h"
-#pragma comment(lib, "detour/detours.lib")
+#include "detours.h"
+#pragma comment(lib, "detours.lib")
 void NOP(std::uint64_t offset)
 {
     unsigned char patch[1] = { 0x90 };
